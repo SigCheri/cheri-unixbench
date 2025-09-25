@@ -140,7 +140,8 @@ SOURCES = arith.c big.c context1.c \
 	fstime.c hanoi.c \
 	pipe.c spawn.c \
 	syscall.c looper.c timeit.c time-polling.c \
-	dhry_1.c dhry_2.c dhry.h whets.c ubgears.c
+	dhry_1.c dhry_2.c dhry.h whets.c ubgears.c \
+   execute.c
 TESTS = sort.src cctest.c dc.dat large.txt
 
 ifneq (,$(GRAPHIC_TESTS))
@@ -155,7 +156,8 @@ BINS = $(PROGDIR)/arithoh $(PROGDIR)/register $(PROGDIR)/short \
 	$(PROGDIR)/hanoi $(PROGDIR)/syscall $(PROGDIR)/context1 \
 	$(PROGDIR)/pipe $(PROGDIR)/spawn $(PROGDIR)/execl \
 	$(PROGDIR)/dhry2 $(PROGDIR)/dhry2reg  $(PROGDIR)/looper \
-	$(PROGDIR)/fstime $(PROGDIR)/whetstone-double $(GRAPHIC_BINS)
+	$(PROGDIR)/fstime $(PROGDIR)/whetstone-double $(GRAPHIC_BINS) \
+   $(PROGDIR)/execute
 ## These compile only on some platforms...
 # $(PROGDIR)/poll $(PROGDIR)/poll2 $(PROGDIR)/select
 
@@ -235,6 +237,8 @@ $(PROGDIR)/%:
 # Individual programs
 # Sometimes the same source file is compiled in different ways.
 # This limits the 'make' patterns that can usefully be applied.
+
+$(PROGDIR)/execute: $(SRCDIR)/execute.c
 
 $(PROGDIR)/arithoh:  $(SRCDIR)/arith.c $(SRCDIR)/timeit.c
 $(PROGDIR)/arithoh:  CFLAGS += -Darithoh
